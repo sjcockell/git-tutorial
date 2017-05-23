@@ -1,19 +1,72 @@
-% Title
-% Name
-% Date
+% Introduction to Git for Scientists
+% Simon Cockell
+% 7th June 2017
 
 
-My first slide
+What is Git?
+------------
+
+Why version control?
 --------------------
 
-List
+How to use Git -- the basics
+----------------------------
 
-* this 
-* is
-* cool
+init
+----
 
-Variables
+clone
+-----
+
+add
+---
+
+status
+------
+
+commit
+------
+
+diff
+----
+
+log
+---
+
+mv and rm
 ---------
+
+ignore
+------
+
+reset
+-----
+
+Git for collaboration
+---------------------
+
+Github
+------
+
+push
+----
+
+pull
+----
+
+merge
+-----
+
+Forking and Pull requests
+-------------------------
+
+Branches and more merging
+-------------------------
+
+
+
+A slide to throwaway later
+--------------------------
 
 The following variables can be defined from the command line:
 

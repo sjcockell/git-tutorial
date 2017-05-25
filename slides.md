@@ -218,6 +218,8 @@ stage all unmodified tracked files.
 diff
 ----
 
+What's the difference?
+
 log
 ---
 

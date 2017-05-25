@@ -70,20 +70,115 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="date">7th June 2017</p>
 </section>
 
-<section id="what-is-git" class="level2">
-<h2>What is Git?</h2>
-</section>
 <section id="why-version-control" class="level2">
 <h2>Why version control?</h2>
+<p><img src='img/phd101212s.png' height=450></p>
+<p><span style="font-size:12px">* Source: <a href="http://phdcomics.com/comics/archive.php?comicid=1531" class="uri">http://phdcomics.com/comics/archive.php?comicid=1531</a></span></p>
+</section>
+<section id="why-version-control-1" class="level2">
+<h2>Why version control?</h2>
+<ul>
+<li>This sort of <em>ad hoc</em> versioning doesn't scale</li>
+<li>Services like <a href="dropbox.com">Dropbox</a> and <a href="drive.google.com">Google Drive</a> can improve matters
+<ul>
+<li>Risk deletion or corruption</li>
+<li>What happens on one computer propagates to whole project</li>
+<li>Still not great for projects &gt;1 directory</li>
+</ul></li>
+<li>Problems faced by software engineers for a long time
+<ul>
+<li>So -- version control</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-is-git" class="level2">
+<h2>What is Git?</h2>
+<p><span style="color:red">Git is a distributed version control system.</span></p>
+<ul>
+<li>Git stores the history of all changes made to a project</li>
+<li>You can use it to roll back these changes at any time
+<ul>
+<li>and to any point</li>
+</ul></li>
+<li>It's also a tool for collaboration</li>
+<li>Git can handle integrating changes from multiple people</li>
+</ul>
+</section>
+<section id="what-is-git-1" class="level2">
+<h2>What is Git?</h2>
+<ul>
+<li>Git was written by Linus Torvalds
+<ul>
+<li>To manage the code for the Linux kernel</li>
+<li>Thousands of collaborators</li>
+<li>Huge codebase</li>
+</ul></li>
+</ul>
+</section>
+<section id="still-unconvinced-what-git-can-do-for-you" class="level2">
+<h2>Still unconvinced? What git can do for you</h2>
+<ul>
+<li>Keep snapshots of your project
+<ul>
+<li>Freeze a version at submission of publication</li>
+<li>Subsequent version with revision</li>
+</ul></li>
+<li>Keep track of important changes to code (and other files)
+<ul>
+<li>Allow even distant collaborators to keep up with developments</li>
+</ul></li>
+<li>Keep projects organised and available after people leave</li>
+</ul>
 </section>
 <section id="how-to-use-git----the-basics" class="level2">
 <h2>How to use Git -- the basics</h2>
+<p>Installing Git</p>
+<ul>
+<li>MacOS - use <a href="https://brew.sh">Homebrew</a>
+<ul>
+<li><code>brew install git</code></li>
+</ul></li>
+<li>Linux - use your package manager
+<ul>
+<li><code>apt install git</code></li>
+</ul></li>
+<li>Windows - <span style="text-decoration:line-through">use Mac or Linux</span>
+<ul>
+<li><a href="https://git-scm.com/download/win">download installer package</a></li>
+</ul></li>
+</ul>
+<p>All git commands are of the form <code>git verb</code> where <code>verb</code> is the thing you want git to do.</p>
+</section>
+<section id="config" class="level2">
+<h2>config</h2>
+<p>Set global git configurations. Because git is a collaborative platform, you need to identify yourself:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> config --global user.name <span class="st">&quot;Donald Duck&quot;</span>
+$ <span class="fu">git</span> config --global user.email <span class="st">&quot;donald@disney.com&quot;</span></code></pre></div>
+<p>Other useful configuration options:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Set up git to use terminal colours</span>
+$ <span class="fu">git</span> config --global color.ui true
+<span class="co"># Change the default text editor used for commit messages</span>
+$ <span class="fu">git</span> config --global core.editor <span class="st">&quot;vim&quot;</span></code></pre></div>
 </section>
 <section id="init" class="level2">
 <h2>init</h2>
+<p>Initialise a new repository</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mkdir</span> mynewrepo
+$ <span class="bu">cd</span> mynewrepo
+$ <span class="fu">git</span> init
+<span class="ex">Initialized</span> empty Git repository in /path/to/mynewrepo</code></pre></div>
+<p>Creates a hidden directory (<code>.git/</code>) which is what manages the repo under the hood</p>
 </section>
 <section id="clone" class="level2">
 <h2>clone</h2>
+<p>Take a copy of another repository - often used if you want to grab someone's code from (e.g.) Github</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> clone git://github.com/broadgsa/gatk.git
+<span class="ex">Cloning</span> into <span class="st">&#39;gatk&#39;</span>...
+<span class="ex">remote</span>: Counting objects: 175297, done.
+<span class="ex">remote</span>: Total 175297 (delta 0), <span class="ex">reused</span> 0 (delta 0), <span class="ex">pack-reused</span> 175297
+<span class="ex">Receiving</span> objects: 100% (175297/175297), <span class="ex">247.52</span> MiB <span class="kw">|</span> <span class="ex">11.54</span> MiB/s, done.
+<span class="ex">Resolving</span> deltas: 100% (97299/97299), <span class="kw">done</span><span class="ex">.</span></code></pre></div>
+<p>This gives you access to new updates as they're released -- you won't have permission to push changes to this repo.</p>
 </section>
 <section id="add" class="level2">
 <h2>add</h2>

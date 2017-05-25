@@ -166,7 +166,7 @@ $ <span class="fu">git</span> config --global core.editor <span class="st">&quot
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mkdir</span> mynewrepo
 $ <span class="bu">cd</span> mynewrepo
 $ <span class="fu">git</span> init
-<span class="ex">Initialized</span> empty Git repository in /path/to/mynewrepo</code></pre></div>
+<span class="ex">Initialized</span> empty Git repository in /path/to/mynewrepo/.git/</code></pre></div>
 <p>Creates a hidden directory (<code>.git/</code>) which is what manages the repo under the hood</p>
 </section>
 <section id="clone" class="level2">
@@ -182,12 +182,79 @@ $ <span class="fu">git</span> init
 </section>
 <section id="add" class="level2">
 <h2>add</h2>
+<p>We created a repository with <code>init</code>, but it's not tracking anything.</p>
+<p>Use <code>add</code> to track files in your repo (the files will need to exist).</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">touch</span> README
+$ <span class="fu">git</span> add README</code></pre></div>
+<p>Now, git is tracking our new <code>README</code> file.</p>
 </section>
 <section id="status" class="level2">
 <h2>status</h2>
+<p><code>status</code> tells you about git's status of the files in your repository</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> status
+<span class="ex">On</span> branch master
+
+<span class="ex">Initial</span> commit
+
+<span class="ex">Changes</span> to be committed:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span>
+
+    <span class="ex">new</span> file:   README</code></pre></div>
+</section>
+<section id="status-1" class="level2">
+<h2>status</h2>
+<p>If we create a new file, but don't <code>add</code> it, <code>status</code> tells us so</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">touch</span> newfile
+$ <span class="fu">git</span> status
+<span class="ex">On</span> branch master
+
+<span class="ex">Initial</span> commit
+
+<span class="ex">Changes</span> to be committed:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span>
+
+    <span class="ex">new</span> file:   README
+
+<span class="ex">Untracked</span> files:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span>
+
+    <span class="ex">newfile</span></code></pre></div>
 </section>
 <section id="commit" class="level2">
 <h2>commit</h2>
+<p>Time to take a snapshot of our project</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># first add the untracked file</span>
+$ <span class="fu">git</span> add newfile
+<span class="co"># now take the snapshot</span>
+$ <span class="fu">git</span> commit -m <span class="st">&quot;My first commit&quot;</span></code></pre></div>
+<p>The <code>-m</code> option lets you add a commit message. If you don't do this at the command line, git will open it's <code>core.editor</code> and make you write one.</p>
+</section>
+<section id="commit-messages" class="level2">
+<h2>Commit messages</h2>
+<p>This is an important way of documenting your project, and what's in the commit. You should be able to find a relevant commit from the message.</p>
+<p><img src='img/git_commit.png' height=250></p>
+<p><span style="font-size:12px">* Source: <a href="http://xkcd.com/1296" class="uri">http://xkcd.com/1296</a></span></p>
+</section>
+<section id="final-word-on-add-status-and-commit" class="level2">
+<h2>Final word on add, status and commit</h2>
+<p>Tracking and staging are different concepts in git. A tracked file is not necessarily staged for the next commit. Even tracked files need to be <code>add</code>ed (staged) before commit:</p>
+</section>
+<section id="final-word-on-add-status-and-commit-1" class="level2">
+<h2>Final word on add, status and commit</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">echo</span> <span class="st">&quot;Copyright (c) 2017, Donald Duck&quot;</span> <span class="op">&gt;</span> README
+$ <span class="fu">git</span> status
+<span class="ex">On</span> branch master
+<span class="ex">Changes</span> not staged for commit:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+
+    <span class="ex">modified</span>:   README
+
+<span class="ex">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre></div>
+</section>
+<section id="final-word-on-add-status-and-commit-2" class="level2">
+<h2>Final word on add, status and commit</h2>
+<p>We have to <code>git add README</code> again to stage the change so it can be committed. Thankfully, git provides us with a shortcut: <code>git commit -a</code> will automatically stage all unmodified tracked files.</p>
 </section>
 <section id="diff" class="level2">
 <h2>diff</h2>

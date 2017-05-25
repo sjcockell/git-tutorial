@@ -87,7 +87,7 @@ Initialise a new repository
 $ mkdir mynewrepo
 $ cd mynewrepo
 $ git init
-Initialized empty Git repository in /path/to/mynewrepo
+Initialized empty Git repository in /path/to/mynewrepo/.git/
 ```
 Creates a hidden directory (`.git/`) which is what manages the repo under the hood
 
@@ -110,11 +110,110 @@ This gives you access to new updates as they're released -- you won't have permi
 add
 ---
 
+We created a repository with `init`, but it's not tracking anything.
+
+Use `add` to track files in your repo (the files will need to exist).
+
+```bash
+$ touch README
+$ git add README
+```
+
+Now, git is tracking our new `README` file.
+
 status
 ------
 
+`status` tells you about git's status of the files in your repository
+
+```bash
+git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   README
+```
+
+status
+------
+
+If we create a new file, but don't `add` it, `status` tells us so
+
+```bash
+$ touch newfile
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   README
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	newfile
+```
+
 commit
 ------
+
+Time to take a snapshot of our project
+
+```bash
+# first add the untracked file
+$ git add newfile
+# now take the snapshot
+$ git commit -m "My first commit"
+```
+
+The `-m` option lets you add a commit message. If you don't do this at the command line,
+git will open it's `core.editor` and make you write one.
+
+Commit messages
+---------------
+
+This is an important way of documenting your project, and what's in the commit.
+You should be able to find a relevant commit from the message.
+
+<img src='img/git_commit.png' height=250>
+
+<span style="font-size:12px">* Source: <http://xkcd.com/1296></span>
+
+Final word on add, status and commit
+------------------------------------
+
+Tracking and staging are different concepts in git. A tracked file is not necessarily
+staged for the next commit. Even tracked files need to be `add`ed (staged) before commit:
+
+Final word on add, status and commit
+------------------------------------
+
+```bash
+$ echo "Copyright (c) 2017, Donald Duck" > README
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   README
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Final word on add, status and commit
+------------------------------------
+We have to `git add README` again to stage the change so it can be committed.
+Thankfully, git provides us with a shortcut: `git commit -a` will automatically
+stage all unmodified tracked files.
+
 
 diff
 ----

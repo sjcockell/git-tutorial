@@ -254,17 +254,61 @@ $ <span class="fu">git</span> status
 </section>
 <section id="final-word-on-add-status-and-commit-2" class="level2">
 <h2>Final word on add, status and commit</h2>
-<p>We have to <code>git add README</code> again to stage the change so it can be committed. Thankfully, git provides us with a shortcut: <code>git commit -a</code> will automatically stage all unmodified tracked files.</p>
+<p>We have to <code>git add README</code> again to stage the change so it can be committed. Thankfully, git provides us with a shortcut: <code>git commit -a</code> will automatically stage all modified tracked files.</p>
 </section>
 <section id="diff" class="level2">
 <h2>diff</h2>
-<p>What's the difference?</p>
+<p><code>git diff</code> will show us the difference between the working tree and the index (what's currently staged for commit).</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">echo</span> <span class="st">&quot;This is the README file for a test project&quot;</span> <span class="op">&gt;&gt;</span> README
+$ <span class="fu">git</span> diff
+<span class="fu">diff</span> --git a/README b/README
+<span class="ex">index</span> c13c494..45724b3 100644
+<span class="ex">---</span> a/README
+<span class="ex">+++</span> b/README
+<span class="ex">@@</span> -1 +1,2 @@
+ <span class="ex">Copyright</span> (c) <span class="ex">2017</span>, Donald Duck
+<span class="ex">+This</span> is the README file for a test project</code></pre></div>
 </section>
 <section id="log" class="level2">
 <h2>log</h2>
+<p>As the name suggests, this verb shows you the commit history of the project:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> log
+<span class="ex">commit</span> c745d67bfc071f9e8bad4c44dcc7b47be089ee4e
+<span class="ex">Author</span>: Simon Cockell <span class="op">&lt;</span>sjcockell@gmail.com<span class="op">&gt;</span>
+<span class="ex">Date</span>:   Fri Jun 2 09:15:08 2017 +0100
+
+    <span class="ex">Second</span> commit
+
+<span class="ex">commit</span> 213caa7b311b8196fedc9dfe72ba4dc449d60b50
+<span class="ex">Author</span>: Simon Cockell <span class="op">&lt;</span>sjcockell@gmail.com<span class="op">&gt;</span>
+<span class="ex">Date</span>:   Thu May 25 15:36:30 2017 +0100
+
+    <span class="ex">My</span> first commit</code></pre></div>
 </section>
 <section id="mv-and-rm" class="level2">
 <h2>mv and rm</h2>
+<p>Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, you'll need to do it through git.</p>
+<p>```bash $ mv README README.bak $ git status On branch master Changes not staged for commit: (use &quot;git add/rm <file>...&quot; to update what will be committed) (use &quot;git checkout -- <file>...&quot; to discard changes in working directory)</p>
+<pre><code>deleted:    README</code></pre>
+<p>Untracked files: (use &quot;git add <file>...&quot; to include in what will be committed)</p>
+<pre><code>README.bak</code></pre>
+<p>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</p>
+</section>
+<section id="mv-and-rm-1" class="level2">
+<h2>mv and rm</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> mv README README.bak
+$ <span class="fu">git</span> status
+<span class="ex">On</span> branch master
+<span class="ex">Changes</span> to be committed:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span>
+
+    <span class="ex">renamed</span>:    README -<span class="op">&gt;</span> README.bak
+
+<span class="ex">Changes</span> not staged for commit:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+
+    <span class="ex">modified</span>:   README.bak</code></pre></div>
 </section>
 <section id="ignore" class="level2">
 <h2>ignore</h2>

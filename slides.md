@@ -127,7 +127,7 @@ status
 `status` tells you about git's status of the files in your repository
 
 ```bash
-git status
+$ git status
 On branch master
 
 Initial commit
@@ -212,19 +212,86 @@ Final word on add, status and commit
 ------------------------------------
 We have to `git add README` again to stage the change so it can be committed.
 Thankfully, git provides us with a shortcut: `git commit -a` will automatically
-stage all unmodified tracked files.
+stage all modified tracked files.
 
 
 diff
 ----
 
-What's the difference?
+`git diff` will show us the difference between the working tree and the index (what's currently staged for commit).
+
+```bash
+$ echo "This is the README file for a test project" >> README
+$ git diff
+diff --git a/README b/README
+index c13c494..45724b3 100644
+--- a/README
++++ b/README
+@@ -1 +1,2 @@
+ Copyright (c) 2017, Donald Duck
++This is the README file for a test project
+```
 
 log
 ---
 
+As the name suggests, this verb shows you the commit history of the project:
+
+```bash
+$ git log
+commit c745d67bfc071f9e8bad4c44dcc7b47be089ee4e
+Author: Donald Duck <donald@disney.com>
+Date:   Fri May 26 09:15:08 2017 +0100
+
+    Second commit
+
+commit 213caa7b311b8196fedc9dfe72ba4dc449d60b50
+Author: Donald Duck <donald@disney.com>
+Date:   Thu May 25 15:36:30 2017 +0100
+
+    My first commit
+```
+
 mv and rm
 ---------
+
+Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, you'll need to do it through git.
+
+```bash
+$ mv README README.bak
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    README
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	README.bak
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+mv and rm
+---------
+
+```bash
+$ git mv README README.bak
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	renamed:    README -> README.bak
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   README.bak
+```
 
 ignore
 ------

@@ -67,7 +67,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <section>
   <h1 class="title">Introduction to Git for Scientists</h1>
   <p class="author">Simon Cockell</p>
-  <p class="date">7th June 2017</p>
+  <p class="date">6th June 2017</p>
 </section>
 
 <section id="why-version-control" class="level2">
@@ -191,7 +191,7 @@ $ <span class="fu">git</span> add README</code></pre></div>
 <section id="status" class="level2">
 <h2>status</h2>
 <p><code>status</code> tells you about git's status of the files in your repository</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> status
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> status
 <span class="ex">On</span> branch master
 
 <span class="ex">Initial</span> commit
@@ -274,27 +274,40 @@ $ <span class="fu">git</span> diff
 <p>As the name suggests, this verb shows you the commit history of the project:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> log
 <span class="ex">commit</span> c745d67bfc071f9e8bad4c44dcc7b47be089ee4e
-<span class="ex">Author</span>: Simon Cockell <span class="op">&lt;</span>sjcockell@gmail.com<span class="op">&gt;</span>
-<span class="ex">Date</span>:   Fri Jun 2 09:15:08 2017 +0100
+<span class="ex">Author</span>: Donald Duck <span class="op">&lt;</span>donald@disney.com<span class="op">&gt;</span>
+<span class="ex">Date</span>:   Fri May 26 09:15:08 2017 +0100
 
     <span class="ex">Second</span> commit
 
 <span class="ex">commit</span> 213caa7b311b8196fedc9dfe72ba4dc449d60b50
-<span class="ex">Author</span>: Simon Cockell <span class="op">&lt;</span>sjcockell@gmail.com<span class="op">&gt;</span>
+<span class="ex">Author</span>: Donald Duck <span class="op">&lt;</span>donald@disney.com<span class="op">&gt;</span>
 <span class="ex">Date</span>:   Thu May 25 15:36:30 2017 +0100
 
     <span class="ex">My</span> first commit</code></pre></div>
 </section>
 <section id="mv-and-rm" class="level2">
 <h2>mv and rm</h2>
-<p>Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, you'll need to do it through git.</p>
-<p>```bash $ mv README README.bak $ git status On branch master Changes not staged for commit: (use &quot;git add/rm <file>...&quot; to update what will be committed) (use &quot;git checkout -- <file>...&quot; to discard changes in working directory)</p>
-<pre><code>deleted:    README</code></pre>
-<p>Untracked files: (use &quot;git add <file>...&quot; to include in what will be committed)</p>
-<pre><code>README.bak</code></pre>
-<p>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</p>
+<p>Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, it's best to do it through git.</p>
 </section>
 <section id="mv-and-rm-1" class="level2">
+<h2>mv and rm</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mv</span> README README.bak
+$ <span class="fu">git</span> status
+<span class="ex">On</span> branch master
+<span class="ex">Changes</span> not staged for commit:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add/rm &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+
+    <span class="ex">deleted</span>:    README
+
+<span class="ex">Untracked</span> files:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span>
+
+    <span class="ex">README.bak</span>
+
+<span class="ex">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre></div>
+</section>
+<section id="mv-and-rm-2" class="level2">
 <h2>mv and rm</h2>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> mv README README.bak
 $ <span class="fu">git</span> status
@@ -312,43 +325,174 @@ $ <span class="fu">git</span> status
 </section>
 <section id="ignore" class="level2">
 <h2>ignore</h2>
+<p>There will often be files in a project directory that we don't want to track. This is especially true of large files (e.g. data), that git doesn't handle well.</p>
+<p>Ignoring is controlled by the contents of a .gitignore file.</p>
+</section>
+<section id="ignore-1" class="level2">
+<h2>ignore</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">echo</span> <span class="st">&#39;data&#39;</span> <span class="op">&gt;</span> .gitignore
+$ <span class="ex">curl</span> -o data/grch38.fa ftp://anonymous@ftp.ensembl.org/pub/release-89/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+$ <span class="fu">git</span> status
+<span class="ex">On</span> branch master
+<span class="ex">Changes</span> not staged for commit:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+
+    <span class="ex">modified</span>:   README
+
+<span class="ex">Untracked</span> files:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span>
+
+    <span class="ex">.gitignore</span>
+
+<span class="ex">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre></div>
 </section>
 <section id="reset" class="level2">
 <h2>reset</h2>
+<p>Undo any mistaken changes. Can be used to rollback uncommitted changes, or revert to an old commit.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> commit -a -m <span class="st">&quot;Committing .gitignore&quot;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;A destructive change&quot;</span> <span class="op">&gt;</span> README
+$ <span class="fu">git</span> commit -a -m <span class="st">&quot;Oops&quot;</span>
+$ <span class="fu">git</span> log
+<span class="ex">commit</span> f361ea3c091ed804b43f1c88aa359d6625c13386
+<span class="ex">Author</span>: Donald Duck <span class="op">&lt;</span>donald@disney.com<span class="op">&gt;</span>
+<span class="ex">Date</span>:   Fri May 26 09:56:39 2017 +0100
+
+    <span class="ex">Oops</span>
+
+<span class="ex">commit</span> 5e764bea879d61acb10e89479faa89291df7ab94
+<span class="ex">Author</span>: Donald ...</code></pre></div>
+</section>
+<section id="reset-1" class="level2">
+<h2>reset</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> reset --hard 5e764bea879d61acb10e89479faa89291df7ab94
+<span class="ex">HEAD</span> is now at 5e764be Committing .gitignore
+$ <span class="fu">cat</span> README
+<span class="ex">Copyright</span> (c) <span class="ex">2017</span>, Donald Duck
+<span class="ex">This</span> is the README file for a test project</code></pre></div>
 </section>
 <section id="git-for-collaboration" class="level2">
 <h2>Git for collaboration</h2>
+<p>So far, all operations have been with a <em>local repository</em>. Remote repositories can be used to enable git as a collaborative tool.</p>
+</section>
+<section id="git-for-collaboration-1" class="level2">
+<h2>Git for collaboration</h2>
+<p>Centralised version control - e.g. Subversion</p>
+<p><img src='img/svn_example.png'></p>
+</section>
+<section id="git-for-collaboration-2" class="level2">
+<h2>Git for collaboration</h2>
+<p>Distributed version control</p>
+<p><img src='img/git_example.png'></p>
+</section>
+<section id="git-for-collaboration-3" class="level2">
+<h2>Git for collaboration</h2>
+<p>More complicated distributed version control</p>
+<p><img src='img/complex_git_example.png'></p>
 </section>
 <section id="github" class="level2">
 <h2>Github</h2>
+<p>Github will often perform the role of the 'central server' for git repositories.</p>
+<ul>
+<li>Free, with premium options</li>
+<li>Educational accounts</li>
+<li>&quot;Social&quot; features for organising collaborations around code</li>
+</ul>
+<p><img src='img/Octocat.png' height=150></p>
+</section>
+<section id="getting-setup-with-github" class="level2">
+<h2>Getting setup with Github</h2>
+<p>Some steps required to get going with Github:</p>
+<ul>
+<li>Sign up for an account</li>
+<li>When signed in, click the '+' in the top right
+<ul>
+<li>Select 'New Repository'</li>
+</ul></li>
+<li>Follow the on screen steps to set up your repo</li>
+</ul>
+</section>
+<section id="getting-setup-with-github-1" class="level2">
+<h2>Getting setup with Github</h2>
+<p>Once your repo is up and running, you can grab a local copy:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> clone git://github.com/YOURUSERNAME/YOURNEWREPO.git</code></pre></div>
+</section>
+<section id="getting-setup-with-github-2" class="level2">
+<h2>Getting setup with Github</h2>
+<p>You can also set an existing repository up with a new Github repo:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> remote add origin git@github.com:YOURUSERNAME/YOURNEWREPO.git</code></pre></div>
+<p>This uses the <code>remote</code> verb to add a named remote repository (in this case <code>origin</code> - which is the conventional default).</p>
+</section>
+<section id="authenticating-with-github" class="level2">
+<h2>Authenticating with Github</h2>
+<p>Github needs to know who you are so you can send it updates to your projects.</p>
+<ul>
+<li>Github uses SSH keys for authentication</li>
+<li>Out of scope here, but see Github Help:</li>
+</ul>
+<p><a href="https://help.github.com/articles/connecting-to-github-with-ssh/" class="uri">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
 </section>
 <section id="push" class="level2">
 <h2>push</h2>
+<p>Send your commits to the remote repository.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> push origin master</code></pre></div>
+<p>This is of the form</p>
+<p><code>git push &lt;remote-name&gt; &lt;branch&gt;</code></p>
+<p>the defaults for <code>remote-name</code> and <code>branch</code> are <code>origin</code> and <code>master</code>.</p>
+<p>Once you've <code>push</code>ed once, git will fall back on your last <code>remote-name</code> and <code>branch</code>, so <code>git push</code> will suffice.</p>
 </section>
 <section id="pull" class="level2">
 <h2>pull</h2>
+<p>Download the latest updates from the remote repository.</p>
+<p>Works very similarly to <code>push</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> pull origin master</code></pre></div>
+<p>It's good to get into the habit of <code>pull</code>ing before starting to work on a shared repository.</p>
 </section>
 <section id="merge" class="level2">
 <h2>merge</h2>
+<p>If two committers have submitted separate commits, they will have to be merged.</p>
+<ul>
+<li>Easy if no conflicting changes</li>
+<li>Manual decisions to make if not</li>
+</ul>
+</section>
+<section id="merging-conflicts" class="level2">
+<h2>Merging Conflicts</h2>
+<p>A four-step guide:</p>
+<ol type="1">
+<li>Use <code>git status</code> to find the conflicting file(s)</li>
+<li>Open and edit those files manually to a version that fixes the conflicting</li>
+<li>Use <code>git add</code> to tell Git that you've resolved the conflict in a particular file</li>
+<li>Once all conflicts are resolved, use <code>git status</code> to check staging, and <code>commit</code></li>
+</ol>
 </section>
 <section id="forking-and-pull-requests" class="level2">
 <h2>Forking and Pull requests</h2>
+<p>These are features of Github that are designed for collaborative working.</p>
+<p>Forking allows you to make a copy of someone else's repository, so you can work on your own updates.</p>
+<p>You can ask that your changes get merged (or pulled) into the parent via a pull request.</p>
+<p>This is the primary Github methodology that allows for large collaborative projects, while the lead developer can maintain close control over commits to master.</p>
 </section>
-<section id="branches-and-more-merging" class="level2">
-<h2>Branches and more merging</h2>
+<section id="github-desktop" class="level2">
+<h2>Github Desktop</h2>
+<p>App for Mac and Windows; makes managing Github repos easy, and removes dependency on command line.</p>
+<p><a href="https://desktop.github.com" class="uri">https://desktop.github.com</a></p>
+<p>Other tools available, which work with Git services other than Github (e.g BitBucket, Gitlab). For example, GitKraken:</p>
+<p><a href="https://www.gitkraken.com/" class="uri">https://www.gitkraken.com/</a></p>
 </section>
-<section id="a-slide-to-throwaway-later" class="level2">
-<h2>A slide to throwaway later</h2>
-<p>The following variables can be defined from the command line:</p>
-<ul>
-<li>theme</li>
-<li>transition</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">pandoc</span> -t html5 --template=template-revealjs.html \
-    --standalone --section-divs \
-    --variable theme=<span class="st">&quot;beige&quot;</span> \
-    --variable transition=<span class="st">&quot;linear&quot;</span> \
-    slides.md -o slides.html</code></pre></div>
+<section id="acknowledgements" class="level2">
+<h2>Acknowledgements</h2>
+<p>The content here follows closely the Git chapter of</p>
+<p>&quot;Bioinformatics Data Skills&quot;</p>
+<p>by</p>
+<p>Vince Buffalo</p>
+<p>O'Reilly Media Inc, 2015. ISBN: 978-1-449-35737-4</p>
+</section>
+<section id="theres-plenty-more..." class="level2">
+<h2>There's plenty more...</h2>
+<p>We've barely scratched the surface here, but hopefully enough to get you past this:</p>
+<p><img src='img/git.png' height=300></p>
+<p><span style="font-size:12px">* Source: <a href="https://xkcd.com/1597/" class="uri">https://xkcd.com/1597/</a></span></p>
 </section>
     </div>
   </div>

@@ -1,6 +1,6 @@
 % Introduction to Git for Scientists
 % Simon Cockell
-% 7th June 2017
+% 6th June 2017
 
 
 
@@ -255,7 +255,10 @@ Date:   Thu May 25 15:36:30 2017 +0100
 mv and rm
 ---------
 
-Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, you'll need to do it through git.
+Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, it's best to do it through git.
+
+mv and rm
+---------
 
 ```bash
 $ mv README README.bak
@@ -273,6 +276,7 @@ Untracked files:
 	README.bak
 
 no changes added to commit (use "git add" and/or "git commit -a")
+```
 
 mv and rm
 ---------
@@ -295,48 +299,232 @@ Changes not staged for commit:
 
 ignore
 ------
+There will often be files in a project directory that we don't want to track. This is especially true of large files (e.g. data), that git doesn't handle well.
+
+Ignoring is controlled by the contents of a .gitignore file.
+
+ignore
+------
+
+```bash
+$ echo 'data' > .gitignore
+$ curl -o data/grch38.fa ftp://anonymous@ftp.ensembl.org/pub/release-89/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   README
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+```
 
 reset
 -----
 
+Undo any mistaken changes. Can be used to rollback uncommitted changes, or revert to an old commit.
+
+```bash
+$ git commit -a -m "Committing .gitignore"
+$ echo "A destructive change" > README
+$ git commit -a -m "Oops"
+$ git log
+commit f361ea3c091ed804b43f1c88aa359d6625c13386
+Author: Donald Duck <donald@disney.com>
+Date:   Fri May 26 09:56:39 2017 +0100
+
+    Oops
+
+commit 5e764bea879d61acb10e89479faa89291df7ab94
+Author: Donald ...
+```
+
+reset
+-----
+```bash
+$ git reset --hard 5e764bea879d61acb10e89479faa89291df7ab94
+HEAD is now at 5e764be Committing .gitignore
+$ cat README
+Copyright (c) 2017, Donald Duck
+This is the README file for a test project
+```
+
 Git for collaboration
 ---------------------
+
+So far, all operations have been with a *local repository*. Remote repositories can be used to enable git as a collaborative tool.
+
+Git for collaboration
+---------------------
+
+Centralised version control - e.g. Subversion
+
+<img src='img/svn_example.png'>
+
+Git for collaboration
+---------------------
+
+Distributed version control
+
+<img src='img/git_example.png'>
+
+Git for collaboration
+---------------------
+
+More complicated distributed version control
+
+<img src='img/complex_git_example.png'>
 
 Github
 ------
 
+Github will often perform the role of the 'central server' for git repositories.
+
+  * Free, with premium options
+  * Educational accounts
+  * "Social" features for organising collaborations around code
+
+<img src='img/Octocat.png' height=150>
+
+Getting setup with Github
+-------------------------
+
+Some steps required to get going with Github:
+
+  * Sign up for an account
+  * When signed in, click the '+' in the top right
+    * Select 'New Repository'
+  * Follow the on screen steps to set up your repo
+
+Getting setup with Github
+-------------------------
+
+Once your repo is up and running, you can grab a local copy:
+
+```bash
+$ git clone git://github.com/YOURUSERNAME/YOURNEWREPO.git
+```
+
+Getting setup with Github
+-------------------------
+
+You can also set an existing repository up with a new Github repo:
+
+```bash
+$ git remote add origin git@github.com:YOURUSERNAME/YOURNEWREPO.git
+```
+
+This uses the `remote` verb to add a named remote repository (in this case `origin` - which is the conventional default).
+
+Authenticating with Github
+--------------------------
+
+Github needs to know who you are so you can send it updates to your projects.
+
+  * Github uses SSH keys for authentication
+  * Out of scope here, but see Github Help:
+
+<https://help.github.com/articles/connecting-to-github-with-ssh/>
+
 push
 ----
+
+Send your commits to the remote repository.
+
+```bash
+$ git push origin master
+```
+
+This is of the form
+
+`git push <remote-name> <branch>`
+
+the defaults for `remote-name` and `branch` are `origin` and `master`.
+
+Once you've `push`ed once, git will fall back on your last `remote-name` and `branch`, so `git push` will suffice.
 
 pull
 ----
 
+Download the latest updates from the remote repository.
+
+Works very similarly to `push`:
+
+```bash
+$ git pull origin master
+```
+
+It's good to get into the habit of `pull`ing before starting to work on a shared repository.
+
 merge
 -----
+
+If two committers have submitted separate commits, they will have to be merged.
+
+  * Easy if no conflicting changes
+  * Manual decisions to make if not
+
+Merging Conflicts
+-----------------
+
+A four-step guide:
+
+  1. Use `git status` to find the conflicting file(s)
+  1. Open and edit those files manually to a version that fixes the conflicting
+  1. Use `git add` to tell Git that you've resolved the conflict in a particular file
+  1. Once all conflicts are resolved, use `git status` to check staging, and `commit`
+
 
 Forking and Pull requests
 -------------------------
 
-Branches and more merging
--------------------------
+These are features of Github that are designed for collaborative working.
 
+Forking allows you to make a copy of someone else's repository, so you can work on your own updates.
 
+You can ask that your changes get merged (or pulled) into the parent via a pull request.
 
-A slide to throwaway later
---------------------------
+This is the primary Github methodology that allows for large collaborative projects, while the lead developer can maintain close control over commits to master.
 
-The following variables can be defined from the command line:
+Github Desktop
+--------------
 
-* theme
-* transition
+App for Mac and Windows; makes managing Github repos easy, and removes dependency on command line.
 
-```bash
-pandoc -t html5 --template=template-revealjs.html \
-    --standalone --section-divs \
-    --variable theme="beige" \
-    --variable transition="linear" \
-    slides.md -o slides.html
-```
+<https://desktop.github.com>
+
+Other tools available, which work with Git services other than Github (e.g BitBucket, Gitlab). For example, GitKraken:
+
+<https://www.gitkraken.com/>
+
+Acknowledgements
+----------------
+
+The content here follows closely the Git chapter of
+
+"Bioinformatics Data Skills"
+
+by
+
+Vince Buffalo
+
+O'Reilly Media Inc, 2015. ISBN: 978-1-449-35737-4
+
+There's plenty more...
+----------------------
+
+We've barely scratched the surface here, but hopefully enough to get you past this:
+
+<img src='img/git.png' height=300>
+
+<span style="font-size:12px">* Source: <https://xkcd.com/1597/></span>
 
   [1]: dropbox.com
   [2]: drive.google.com

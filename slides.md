@@ -529,6 +529,8 @@ We've barely scratched the surface here, but hopefully enough to get you past th
 
 <img src='img/git.png' height=300>
 
+For slides: <https://github.com/sjcockell/git-tutorial>
+
 <span style="font-size:12px">* Source: <https://xkcd.com/1597/></span>
 
   [1]: dropbox.com

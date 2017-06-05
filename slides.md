@@ -504,6 +504,11 @@ Other tools available, which work with Git services other than Github (e.g BitBu
 
 <https://www.gitkraken.com/>
 
+Github Desktop
+--------------
+
+<img src='img/github-desktop.png' height=500>
+
 Acknowledgements
 ----------------
 

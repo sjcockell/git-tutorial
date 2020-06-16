@@ -1,8 +1,9 @@
 % Introduction to Git for Scientists
 % Simon Cockell
-% 6th June 2017
+% 17th June 2020
 
 
+#
 
 Why version control?
 --------------------
@@ -10,6 +11,8 @@ Why version control?
 <img src='img/phd101212s.png' height=450>
 
 <span style="font-size:12px">* Source: <http://phdcomics.com/comics/archive.php?comicid=1531></span>
+
+#
 
 Why version control?
 --------------------
@@ -21,6 +24,8 @@ Why version control?
   * Problems faced by software engineers for a long time
     * So -- version control
 
+#
+
 What is Git?
 ------------
 <span style="color:red">Git is a distributed version control system.</span>
@@ -31,12 +36,15 @@ What is Git?
   * It's also a tool for collaboration
   * Git can handle integrating changes from multiple people
 
+
 What is Git?
 ------------
   * Git was written by Linus Torvalds
     * To manage the code for the Linux kernel
     * Thousands of collaborators
     * Huge codebase
+
+#
 
 Still unconvinced? What git can do for you
 ------------------------------------------
@@ -46,6 +54,8 @@ Still unconvinced? What git can do for you
   * Keep track of important changes to code (and other files)
     * Allow even distant collaborators to keep up with developments
   * Keep projects organised and available after people leave
+
+#
 
 How to use Git -- the basics
 ----------------------------
@@ -59,6 +69,8 @@ Installing Git
     * [download installer package][4]
 
 All git commands are of the form `git verb` where `verb` is the thing you want git to do.
+
+#
 
 config
 ------
@@ -79,6 +91,8 @@ $ git config --global color.ui true
 $ git config --global core.editor "vim"
 ```
 
+#
+
 init
 ----
 Initialise a new repository
@@ -90,6 +104,8 @@ $ git init
 Initialized empty Git repository in /path/to/mynewrepo/.git/
 ```
 Creates a hidden directory (`.git/`) which is what manages the repo under the hood
+
+#
 
 clone
 -----
@@ -107,6 +123,8 @@ Resolving deltas: 100% (97299/97299), done.
 
 This gives you access to new updates as they're released -- you won't have permission to push changes to this repo.
 
+#
+
 add
 ---
 
@@ -120,6 +138,8 @@ $ git add README
 ```
 
 Now, git is tracking our new `README` file.
+
+#
 
 status
 ------
@@ -161,6 +181,8 @@ Untracked files:
 	newfile
 ```
 
+#
+
 commit
 ------
 
@@ -176,6 +198,8 @@ $ git commit -m "My first commit"
 The `-m` option lets you add a commit message. If you don't do this at the command line,
 git will open it's `core.editor` and make you write one.
 
+#
+
 Commit messages
 ---------------
 
@@ -185,6 +209,8 @@ You should be able to find a relevant commit from the message.
 <img src='img/git_commit.png' height=250>
 
 <span style="font-size:12px">* Source: <http://xkcd.com/1296></span>
+
+#
 
 Final word on add, status and commit
 ------------------------------------
@@ -214,6 +240,7 @@ We have to `git add README` again to stage the change so it can be committed.
 Thankfully, git provides us with a shortcut: `git commit -a` will automatically
 stage all modified tracked files.
 
+#
 
 diff
 ----
@@ -231,6 +258,8 @@ index c13c494..45724b3 100644
  Copyright (c) 2017, Donald Duck
 +This is the README file for a test project
 ```
+
+#
 
 log
 ---
@@ -251,6 +280,8 @@ Date:   Thu May 25 15:36:30 2017 +0100
 
     My first commit
 ```
+
+#
 
 mv and rm
 ---------
@@ -297,6 +328,8 @@ Changes not staged for commit:
 	modified:   README.bak
 ```
 
+#
+
 ignore
 ------
 There will often be files in a project directory that we don't want to track. This is especially true of large files (e.g. data), that git doesn't handle well.
@@ -325,6 +358,8 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 
 ```
+
+#
 
 reset
 -----
@@ -356,6 +391,8 @@ Copyright (c) 2017, Donald Duck
 This is the README file for a test project
 ```
 
+#
+
 Git for collaboration
 ---------------------
 
@@ -382,6 +419,8 @@ More complicated distributed version control
 
 <img src='img/complex_git_example.png'>
 
+#
+
 Github
 ------
 
@@ -392,6 +431,8 @@ Github will often perform the role of the 'central server' for git repositories.
   * "Social" features for organising collaborations around code
 
 <img src='img/Octocat.png' height=150>
+
+#
 
 Getting setup with Github
 -------------------------
@@ -423,6 +464,8 @@ $ git remote add origin git@github.com:YOURUSERNAME/YOURNEWREPO.git
 
 This uses the `remote` verb to add a named remote repository (in this case `origin` - which is the conventional default).
 
+#
+
 Authenticating with Github
 --------------------------
 
@@ -432,6 +475,8 @@ Github needs to know who you are so you can send it updates to your projects.
   * Out of scope here, but see Github Help:
 
 <https://help.github.com/articles/connecting-to-github-with-ssh/>
+
+#
 
 push
 ----
@@ -450,6 +495,8 @@ the defaults for `remote-name` and `branch` are `origin` and `master`.
 
 Once you've `push`ed once, git will fall back on your last `remote-name` and `branch`, so `git push` will suffice.
 
+#
+
 pull
 ----
 
@@ -463,6 +510,8 @@ $ git pull origin master
 
 It's good to get into the habit of `pull`ing before starting to work on a shared repository.
 
+#
+
 merge
 -----
 
@@ -470,6 +519,8 @@ If two committers have submitted separate commits, they will have to be merged.
 
   * Easy if no conflicting changes
   * Manual decisions to make if not
+
+#
 
 Merging Conflicts
 -----------------
@@ -481,6 +532,7 @@ A four-step guide:
   1. Use `git add` to tell Git that you've resolved the conflict in a particular file
   1. Once all conflicts are resolved, use `git status` to check staging, and `commit`
 
+#
 
 Forking and Pull requests
 -------------------------
@@ -492,6 +544,8 @@ Forking allows you to make a copy of someone else's repository, so you can work 
 You can ask that your changes get merged (or pulled) into the parent via a pull request.
 
 This is the primary Github methodology that allows for large collaborative projects, while the lead developer can maintain close control over commits to master.
+
+#
 
 Github Desktop
 --------------
@@ -509,6 +563,15 @@ Github Desktop
 
 <img src='img/github-desktop.png' height=500>
 
+#
+
+Git and RStudio
+---------------
+
+RStudio has integrated support for Git - this is dependent on the use of RStudio projects.
+
+Instructions for setting up: <https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN>.
+
 Acknowledgements
 ----------------
 
@@ -522,12 +585,14 @@ Vince Buffalo
 
 O'Reilly Media Inc, 2015. ISBN: 978-1-449-35737-4
 
+#
+
 There's plenty more...
 ----------------------
 
 We've barely scratched the surface here, but hopefully enough to get you past this:
 
-<img src='img/git.png' height=300>
+<img src='img/git.png' height=250>
 
 For slides: <https://github.com/sjcockell/git-tutorial>
 

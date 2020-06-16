@@ -67,14 +67,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <section>
   <h1 class="title">Introduction to Git for Scientists</h1>
   <p class="author">Simon Cockell</p>
-  <p class="date">6th June 2017</p>
+  <p class="date">17th June 2020</p>
 </section>
 
+<section id="section" class="level1">
+<h1></h1>
 <section id="why-version-control" class="level2">
 <h2>Why version control?</h2>
 <p><img src='img/phd101212s.png' height=450></p>
 <p><span style="font-size:12px">* Source: <a href="http://phdcomics.com/comics/archive.php?comicid=1531" class="uri">http://phdcomics.com/comics/archive.php?comicid=1531</a></span></p>
 </section>
+</section>
+<section id="section-1" class="level1">
+<h1></h1>
 <section id="why-version-control-1" class="level2">
 <h2>Why version control?</h2>
 <ul>
@@ -91,6 +96,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 </section>
+</section>
+<section id="section-2" class="level1">
+<h1></h1>
 <section id="what-is-git" class="level2">
 <h2>What is Git?</h2>
 <p><span style="color:red">Git is a distributed version control system.</span></p>
@@ -115,6 +123,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 </section>
+</section>
+<section id="section-3" class="level1">
+<h1></h1>
 <section id="still-unconvinced-what-git-can-do-for-you" class="level2">
 <h2>Still unconvinced? What git can do for you</h2>
 <ul>
@@ -130,6 +141,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Keep projects organised and available after people leave</li>
 </ul>
 </section>
+</section>
+<section id="section-4" class="level1">
+<h1></h1>
 <section id="how-to-use-git----the-basics" class="level2">
 <h2>How to use Git -- the basics</h2>
 <p>Installing Git</p>
@@ -149,6 +163,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>All git commands are of the form <code>git verb</code> where <code>verb</code> is the thing you want git to do.</p>
 </section>
+</section>
+<section id="section-5" class="level1">
+<h1></h1>
 <section id="config" class="level2">
 <h2>config</h2>
 <p>Set global git configurations. Because git is a collaborative platform, you need to identify yourself:</p>
@@ -160,6 +177,9 @@ $ <span class="fu">git</span> config --global color.ui true
 <span class="co"># Change the default text editor used for commit messages</span>
 $ <span class="fu">git</span> config --global core.editor <span class="st">&quot;vim&quot;</span></code></pre></div>
 </section>
+</section>
+<section id="section-6" class="level1">
+<h1></h1>
 <section id="init" class="level2">
 <h2>init</h2>
 <p>Initialise a new repository</p>
@@ -169,6 +189,9 @@ $ <span class="fu">git</span> init
 <span class="ex">Initialized</span> empty Git repository in /path/to/mynewrepo/.git/</code></pre></div>
 <p>Creates a hidden directory (<code>.git/</code>) which is what manages the repo under the hood</p>
 </section>
+</section>
+<section id="section-7" class="level1">
+<h1></h1>
 <section id="clone" class="level2">
 <h2>clone</h2>
 <p>Take a copy of another repository - often used if you want to grab someone's code from (e.g.) Github</p>
@@ -180,6 +203,9 @@ $ <span class="fu">git</span> init
 <span class="ex">Resolving</span> deltas: 100% (97299/97299), <span class="kw">done</span><span class="ex">.</span></code></pre></div>
 <p>This gives you access to new updates as they're released -- you won't have permission to push changes to this repo.</p>
 </section>
+</section>
+<section id="section-8" class="level1">
+<h1></h1>
 <section id="add" class="level2">
 <h2>add</h2>
 <p>We created a repository with <code>init</code>, but it's not tracking anything.</p>
@@ -188,6 +214,9 @@ $ <span class="fu">git</span> init
 $ <span class="fu">git</span> add README</code></pre></div>
 <p>Now, git is tracking our new <code>README</code> file.</p>
 </section>
+</section>
+<section id="section-9" class="level1">
+<h1></h1>
 <section id="status" class="level2">
 <h2>status</h2>
 <p><code>status</code> tells you about git's status of the files in your repository</p>
@@ -220,6 +249,9 @@ $ <span class="fu">git</span> status
 
     <span class="ex">newfile</span></code></pre></div>
 </section>
+</section>
+<section id="section-10" class="level1">
+<h1></h1>
 <section id="commit" class="level2">
 <h2>commit</h2>
 <p>Time to take a snapshot of our project</p>
@@ -229,12 +261,18 @@ $ <span class="fu">git</span> add newfile
 $ <span class="fu">git</span> commit -m <span class="st">&quot;My first commit&quot;</span></code></pre></div>
 <p>The <code>-m</code> option lets you add a commit message. If you don't do this at the command line, git will open it's <code>core.editor</code> and make you write one.</p>
 </section>
+</section>
+<section id="section-11" class="level1">
+<h1></h1>
 <section id="commit-messages" class="level2">
 <h2>Commit messages</h2>
 <p>This is an important way of documenting your project, and what's in the commit. You should be able to find a relevant commit from the message.</p>
 <p><img src='img/git_commit.png' height=250></p>
 <p><span style="font-size:12px">* Source: <a href="http://xkcd.com/1296" class="uri">http://xkcd.com/1296</a></span></p>
 </section>
+</section>
+<section id="section-12" class="level1">
+<h1></h1>
 <section id="final-word-on-add-status-and-commit" class="level2">
 <h2>Final word on add, status and commit</h2>
 <p>Tracking and staging are different concepts in git. A tracked file is not necessarily staged for the next commit. Even tracked files need to be <code>add</code>ed (staged) before commit:</p>
@@ -256,6 +294,9 @@ $ <span class="fu">git</span> status
 <h2>Final word on add, status and commit</h2>
 <p>We have to <code>git add README</code> again to stage the change so it can be committed. Thankfully, git provides us with a shortcut: <code>git commit -a</code> will automatically stage all modified tracked files.</p>
 </section>
+</section>
+<section id="section-13" class="level1">
+<h1></h1>
 <section id="diff" class="level2">
 <h2>diff</h2>
 <p><code>git diff</code> will show us the difference between the working tree and the index (what's currently staged for commit).</p>
@@ -269,6 +310,9 @@ $ <span class="fu">git</span> diff
  <span class="ex">Copyright</span> (c) <span class="ex">2017</span>, Donald Duck
 <span class="ex">+This</span> is the README file for a test project</code></pre></div>
 </section>
+</section>
+<section id="section-14" class="level1">
+<h1></h1>
 <section id="log" class="level2">
 <h2>log</h2>
 <p>As the name suggests, this verb shows you the commit history of the project:</p>
@@ -285,6 +329,9 @@ $ <span class="fu">git</span> diff
 
     <span class="ex">My</span> first commit</code></pre></div>
 </section>
+</section>
+<section id="section-15" class="level1">
+<h1></h1>
 <section id="mv-and-rm" class="level2">
 <h2>mv and rm</h2>
 <p>Once a file is tracked by git, the VCS becomes a bit of a control freak -- so if you want to move or delete a file, it's best to do it through git.</p>
@@ -323,6 +370,9 @@ $ <span class="fu">git</span> status
 
     <span class="ex">modified</span>:   README.bak</code></pre></div>
 </section>
+</section>
+<section id="section-16" class="level1">
+<h1></h1>
 <section id="ignore" class="level2">
 <h2>ignore</h2>
 <p>There will often be files in a project directory that we don't want to track. This is especially true of large files (e.g. data), that git doesn't handle well.</p>
@@ -347,6 +397,9 @@ $ <span class="fu">git</span> status
 
 <span class="ex">no</span> changes added to commit (use <span class="st">&quot;git add&quot;</span> and/or <span class="st">&quot;git commit -a&quot;</span>)</code></pre></div>
 </section>
+</section>
+<section id="section-17" class="level1">
+<h1></h1>
 <section id="reset" class="level2">
 <h2>reset</h2>
 <p>Undo any mistaken changes. Can be used to rollback uncommitted changes, or revert to an old commit.</p>
@@ -371,6 +424,9 @@ $ <span class="fu">cat</span> README
 <span class="ex">Copyright</span> (c) <span class="ex">2017</span>, Donald Duck
 <span class="ex">This</span> is the README file for a test project</code></pre></div>
 </section>
+</section>
+<section id="section-18" class="level1">
+<h1></h1>
 <section id="git-for-collaboration" class="level2">
 <h2>Git for collaboration</h2>
 <p>So far, all operations have been with a <em>local repository</em>. Remote repositories can be used to enable git as a collaborative tool.</p>
@@ -390,6 +446,9 @@ $ <span class="fu">cat</span> README
 <p>More complicated distributed version control</p>
 <p><img src='img/complex_git_example.png'></p>
 </section>
+</section>
+<section id="section-19" class="level1">
+<h1></h1>
 <section id="github" class="level2">
 <h2>Github</h2>
 <p>Github will often perform the role of the 'central server' for git repositories.</p>
@@ -400,6 +459,9 @@ $ <span class="fu">cat</span> README
 </ul>
 <p><img src='img/Octocat.png' height=150></p>
 </section>
+</section>
+<section id="section-20" class="level1">
+<h1></h1>
 <section id="getting-setup-with-github" class="level2">
 <h2>Getting setup with Github</h2>
 <p>Some steps required to get going with Github:</p>
@@ -423,6 +485,9 @@ $ <span class="fu">cat</span> README
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> remote add origin git@github.com:YOURUSERNAME/YOURNEWREPO.git</code></pre></div>
 <p>This uses the <code>remote</code> verb to add a named remote repository (in this case <code>origin</code> - which is the conventional default).</p>
 </section>
+</section>
+<section id="section-21" class="level1">
+<h1></h1>
 <section id="authenticating-with-github" class="level2">
 <h2>Authenticating with Github</h2>
 <p>Github needs to know who you are so you can send it updates to your projects.</p>
@@ -432,6 +497,9 @@ $ <span class="fu">cat</span> README
 </ul>
 <p><a href="https://help.github.com/articles/connecting-to-github-with-ssh/" class="uri">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
 </section>
+</section>
+<section id="section-22" class="level1">
+<h1></h1>
 <section id="push" class="level2">
 <h2>push</h2>
 <p>Send your commits to the remote repository.</p>
@@ -441,6 +509,9 @@ $ <span class="fu">cat</span> README
 <p>the defaults for <code>remote-name</code> and <code>branch</code> are <code>origin</code> and <code>master</code>.</p>
 <p>Once you've <code>push</code>ed once, git will fall back on your last <code>remote-name</code> and <code>branch</code>, so <code>git push</code> will suffice.</p>
 </section>
+</section>
+<section id="section-23" class="level1">
+<h1></h1>
 <section id="pull" class="level2">
 <h2>pull</h2>
 <p>Download the latest updates from the remote repository.</p>
@@ -448,6 +519,9 @@ $ <span class="fu">cat</span> README
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">git</span> pull origin master</code></pre></div>
 <p>It's good to get into the habit of <code>pull</code>ing before starting to work on a shared repository.</p>
 </section>
+</section>
+<section id="section-24" class="level1">
+<h1></h1>
 <section id="merge" class="level2">
 <h2>merge</h2>
 <p>If two committers have submitted separate commits, they will have to be merged.</p>
@@ -456,6 +530,9 @@ $ <span class="fu">cat</span> README
 <li>Manual decisions to make if not</li>
 </ul>
 </section>
+</section>
+<section id="section-25" class="level1">
+<h1></h1>
 <section id="merging-conflicts" class="level2">
 <h2>Merging Conflicts</h2>
 <p>A four-step guide:</p>
@@ -466,6 +543,9 @@ $ <span class="fu">cat</span> README
 <li>Once all conflicts are resolved, use <code>git status</code> to check staging, and <code>commit</code></li>
 </ol>
 </section>
+</section>
+<section id="section-26" class="level1">
+<h1></h1>
 <section id="forking-and-pull-requests" class="level2">
 <h2>Forking and Pull requests</h2>
 <p>These are features of Github that are designed for collaborative working.</p>
@@ -473,6 +553,9 @@ $ <span class="fu">cat</span> README
 <p>You can ask that your changes get merged (or pulled) into the parent via a pull request.</p>
 <p>This is the primary Github methodology that allows for large collaborative projects, while the lead developer can maintain close control over commits to master.</p>
 </section>
+</section>
+<section id="section-27" class="level1">
+<h1></h1>
 <section id="github-desktop" class="level2">
 <h2>Github Desktop</h2>
 <p>App for Mac and Windows; makes managing Github repos easy, and removes dependency on command line.</p>
@@ -484,6 +567,14 @@ $ <span class="fu">cat</span> README
 <h2>Github Desktop</h2>
 <p><img src='img/github-desktop.png' height=500></p>
 </section>
+</section>
+<section id="section-28" class="level1">
+<h1></h1>
+<section id="git-and-rstudio" class="level2">
+<h2>Git and RStudio</h2>
+<p>RStudio has integrated support for Git - this is dependent on the use of RStudio projects.</p>
+<p>Instructions for setting up: <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN" class="uri">https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN</a>.</p>
+</section>
 <section id="acknowledgements" class="level2">
 <h2>Acknowledgements</h2>
 <p>The content here follows closely the Git chapter of</p>
@@ -492,12 +583,16 @@ $ <span class="fu">cat</span> README
 <p>Vince Buffalo</p>
 <p>O'Reilly Media Inc, 2015. ISBN: 978-1-449-35737-4</p>
 </section>
+</section>
+<section id="section-29" class="level1">
+<h1></h1>
 <section id="theres-plenty-more..." class="level2">
 <h2>There's plenty more...</h2>
 <p>We've barely scratched the surface here, but hopefully enough to get you past this:</p>
-<p><img src='img/git.png' height=300></p>
+<p><img src='img/git.png' height=250></p>
 <p>For slides: <a href="https://github.com/sjcockell/git-tutorial" class="uri">https://github.com/sjcockell/git-tutorial</a></p>
 <p><span style="font-size:12px">* Source: <a href="https://xkcd.com/1597/" class="uri">https://xkcd.com/1597/</a></span></p>
+</section>
 </section>
     </div>
   </div>
